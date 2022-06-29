@@ -40,14 +40,24 @@ public class User {
 		this.password = password;
 	}
 	
+	//
 	public void depositFunds(double deposit) {
-		this.balance += deposit;
+		// check statement (can't accept negative double)
+		// can't accept any overbalance
+		while(deposit > 0) {
+			this.balance += deposit;
+		}
 	}
 	
-	public void withdraw(double withdraw) {
-		this.balance -= withdraw;
+	//User can withdraw money from their balance as long as it's not overdraft
+	public void withdraw(double withdraw) throws Exception {
+		// check to see if they can't overdraft (withdraw > balance)
+		while(withdraw < balance) {
+			this.balance -= withdraw;
+		}
 	}
 	
+	//User can check their balance in a proper currency (2 point decimal)
 	public double viewBalance() {
 		return balance;
 	}
