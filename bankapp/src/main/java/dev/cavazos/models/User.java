@@ -10,7 +10,6 @@ public class User {
 	private String password;
 	
 	public User() {
-		super();
 		this.id = 0;
 		this.balance = 0.00;
 		this.username = "";
@@ -18,7 +17,6 @@ public class User {
 	}
 	
 	public User(String username, String password) {
-		super();
 		this.id = 0;
 		this.balance = 0.00;
 		this.username = username;
@@ -32,12 +30,24 @@ public class User {
 	public int getID() {
 		return id;
 	}
+	public void setName(String name) {
+		this.username = name;
+	}
+	
+	public String getName() {
+		return username;
+	}
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}
 	
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getPassword() {
+		return password;
 	}
 	
 	//
