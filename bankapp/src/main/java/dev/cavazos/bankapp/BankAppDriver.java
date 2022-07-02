@@ -2,15 +2,13 @@ package dev.cavazos.bankapp;
 
 import java.util.Scanner;
 
-import dev.cavazos.ds.List;
 import dev.cavazos.exceptions.UserNameAlreadyExistsException;
 import dev.cavazos.models.User;
-import dev.cavazos.models.Account;
-import dev.cavazos.services.UserService;
+import dev.cavazos.services.UserServiceImpl;
 
 public class BankAppDriver {
 	private static Scanner scanner = new Scanner(System.in);
-	private static UserService userService;
+	private static UserServiceImpl userService = new UserServiceImpl();
 	
 	public static void main(String[] args) throws Exception {
 		boolean usingBankApp = true;
@@ -113,7 +111,7 @@ public class BankAppDriver {
 				case "y":
 					User user = new User(username, password);
 					try {
-						userService.registerUser(user); // error: "dev.cavazos.bankapp.BankAppDriver.userService" is null
+						userService.registerUser(user);
 						registering = false;
 						System.out.println("Success!");
 					} catch (UserNameAlreadyExistsException e) {

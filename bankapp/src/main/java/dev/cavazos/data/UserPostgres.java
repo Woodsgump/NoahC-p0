@@ -134,17 +134,17 @@ public class UserPostgres implements UserDAO {
 		User user = null;
 		
 		try (Connection conn = connUtil.getConnection()){
-			String sql = "select customer.username"
+			String sql = "select customer.username "
 					+ "from customer "
 					+ "where username=?";
 			
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			//stmt.setString(1, );
+			stmt.setString(1, username);
 			
 			ResultSet resultSet = stmt.executeQuery();
 			
 			if(resultSet.next()) {
-				String name = resultSet.getString("name");
+				String name = resultSet.getString("username");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
