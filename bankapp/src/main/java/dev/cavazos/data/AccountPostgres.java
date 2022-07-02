@@ -93,21 +93,62 @@ public class AccountPostgres implements AccountDAO {
 	}
 
 	@Override
+	public void update(Account acc) {
+		try (Connection conn = connUtil.getConnection()){
+			//TML
+			conn.setAutoCommit(false);
+			
+			String sql = "update account"
+					+ "set name = ?, "
+					+ "balance = ?, "
+					+ "user_id = ?"
+					+ "where id=?";
+			
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, acc.getName());
+		stmt.setDouble(2, acc.getBalance());
+		stmt.setInt(3, acc.getCustomer().getID());
+		stmt.setInt(4, acc.getId());
+		
+		int rowsAffected = stmt.executeUpdate();
+		if(rowsAffected<= 1) {
+			conn.commit();
+		} else {
+			conn.rollback();
+		}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void delete(Account acc) {
+		try(Connection conn = connUtil.getConnection()){
+			// TML
+			conn.setAutoCommit(false);
+			
+			String sql = "delete from account where id=?";
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, acc.getId());
+			
+			int rowsAffected = stmt.executeUpdate();
+			if(rowsAffected<=1) {
+				conn.commit();
+			} else {
+				conn.rollback();
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
 	public List<Account> findAll() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void update(Account t) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(Account t) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
