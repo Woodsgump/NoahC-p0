@@ -134,7 +134,7 @@ public class UserPostgres implements UserDAO {
 		User user = null;
 		
 		try (Connection conn = connUtil.getConnection()){
-			String sql = "select customer.username "
+			String sql = "select * "
 					+ "from customer "
 					+ "where username=?";
 			
@@ -145,6 +145,8 @@ public class UserPostgres implements UserDAO {
 			
 			if(resultSet.next()) {
 				String name = resultSet.getString("username");
+				String password = resultSet.getString("passwd");
+				user = new User(name, password);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

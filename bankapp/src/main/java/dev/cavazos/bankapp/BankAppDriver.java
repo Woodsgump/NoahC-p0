@@ -26,7 +26,7 @@ public class BankAppDriver {
 				
 				switch(input) {
 				case "1":
-					user = logIn();
+					user = logIn(); // TODO: Find the username that's already in the database
 					break;
 				case "2":
 					register(); // Register an account
