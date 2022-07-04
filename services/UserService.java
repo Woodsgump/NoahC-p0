@@ -6,6 +6,12 @@ import dev.cavazos.exceptions.UserNameAlreadyExistsException;
 import dev.cavazos.models.Account;
 import dev.cavazos.models.User;
 
+/**
+ * Establishes the service for the user in the Main Driver in order to start the API.
+ * 
+ * @author Noah Cavazos
+ *
+ */
 public interface UserService {
 	/**
 	 * Creates a new user in the application and returns the newly 

@@ -10,6 +10,12 @@ import dev.cavazos.exceptions.UserNameAlreadyExistsException;
 import dev.cavazos.models.Account;
 import dev.cavazos.models.User;
 
+/**
+ * Implements the UserService to validate and reinforce the API experience in the Driver.
+ * 
+ * @author Noah Cavazos
+ *
+ */
 public class UserServiceImpl implements UserService {
 	private UserDAO userDao = new UserPostgres();
 	private AccountDAO accDao = new AccountPostgres();
@@ -23,7 +29,14 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 	
-	
+	/**
+	 * Creates an instance of an account when a User registers.
+	 * 
+	 * @param name the name of the user they inputted
+	 * @param balance the amount of money which they can modify via withdraw/deposit
+	 * @param userid the id that primary connects to the customer table
+	 * @return acc the instance of Account
+	 */
 	public Account createAccount(String name, double balance, int userid) {
 		Account acc = new Account(name, balance, userid);
 		accDao.create(acc);

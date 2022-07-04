@@ -12,9 +12,21 @@ import dev.cavazos.models.Account;
 import dev.cavazos.models.User;
 import dev.cavazos.utils.ConnectionUtil;
 
+/**
+ * Implement the process of JDBC for the Account model connected to the bankdb database.
+ * 
+ * @author Noah Cavazos
+ *
+ */
 public class AccountPostgres implements AccountDAO {
 	private ConnectionUtil connUtil = ConnectionUtil.getConnectionUtil();
 	
+	/**
+	 * Creating or inserting a new account into the bankdb.
+	 * 
+	 * @param acc An Account object to create
+	 * @return an account instance
+	 */
 	@Override
 	public Account create(Account acc) {
 		try (Connection conn = connUtil.getConnection()) {
@@ -50,7 +62,14 @@ public class AccountPostgres implements AccountDAO {
 		
 		return acc;
 	}
-
+	
+	/**
+	 * A method to find the account by its ID.
+	 * 
+	 * @Param id an integer of the field id in the account table
+	 * 
+	 * @return an account instance
+	 */
 	@Override
 	public Account findByID(int id) {
 		Account acc = null;
@@ -94,6 +113,11 @@ public class AccountPostgres implements AccountDAO {
 		return acc;
 	}
 
+	/**
+	 * Updating the account to the bankdb.
+	 * 
+	 * @param acc Account object to pass in
+	 */
 	@Override
 	public void update(Account acc) {
 		try (Connection conn = connUtil.getConnection()){
@@ -124,6 +148,11 @@ public class AccountPostgres implements AccountDAO {
 		}
 	}
 
+	/**
+	 * Deleting an account of the account table in the bankdb.
+	 * 
+	 * @param acc An account object passed in
+	 */
 	@Override
 	public void delete(Account acc) {
 		try(Connection conn = connUtil.getConnection()){
@@ -147,6 +176,11 @@ public class AccountPostgres implements AccountDAO {
 		}
 	}
 	
+	/**
+	 * Going through an ArrayList of accounts to list all available accounts
+	 * 
+	 * @return an ArrayList of accounts
+	 */
 	@Override
 	public List<Account> findAll() {
 		List<Account> allAcc = new ArrayList<>();

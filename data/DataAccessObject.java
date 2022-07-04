@@ -3,6 +3,12 @@ package dev.cavazos.data;
 import dev.cavazos.ds.List;
 import dev.cavazos.models.User;
 
+/**
+ * Established a DataAccessObject interface to set up for JDBC.
+ * 
+ * @author Noah Cavazos
+ *
+ */
 //data access object or "DAO"
 // this interface lays out the behaviors
 // that a DAO should have (CRUD methods -

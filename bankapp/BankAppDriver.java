@@ -7,13 +7,20 @@ import dev.cavazos.exceptions.UserNameAlreadyExistsException;
 import dev.cavazos.models.Account;
 import dev.cavazos.models.User;
 import dev.cavazos.services.UserServiceImpl;
-
+/**
+ * A driver for the banking application where the user is the customer and they register/login to a bank for financial business.
+ * 
+ * @author Noah Cavazos
+ *
+ */
 public class BankAppDriver {
 	private static Scanner scanner = new Scanner(System.in);
 	private static UserServiceImpl userService = new UserServiceImpl();
 	
 	public static void main(String[] args) throws Exception {
+		// set the condition to the while loop to be true until the user is done
 		boolean usingBankApp = true;
+		// pretty nice interface
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("Welcome to the Bank!");
 		System.out.println("-----------------------------------------------------------");
@@ -68,7 +75,6 @@ public class BankAppDriver {
 					System.out.println("-----------------------------------------------------------");
 					double deposit = scanner.nextDouble();
 					user.depositFunds(deposit);
-					//acc.setBalance(user);
 					break;
 				case "3":
 					System.out.println("-----------------------------------------------------------");
@@ -91,6 +97,7 @@ public class BankAppDriver {
 			scanner.close();
 		}
 		
+		// Properly set up the structure and proccess to which the user logs in to their bank account.
 		private static User logIn() {
 			boolean logging = true;
 			
@@ -123,7 +130,7 @@ public class BankAppDriver {
 			return null;
 		}
 		
-
+		// Same as the login method above but for register where the user creates an account.
 		private static void register() {
 			boolean registering = true;
 		
