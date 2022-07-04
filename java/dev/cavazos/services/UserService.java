@@ -1,0 +1,55 @@
+package dev.cavazos.services;
+
+import org.junit.jupiter.api.Test;
+
+import dev.cavazos.ds.List;
+import dev.cavazos.exceptions.AccountAlreadyExistsException;
+import dev.cavazos.exceptions.UserNameAlreadyExistsException;
+import dev.cavazos.models.Account;
+import dev.cavazos.models.User;
+
+/**
+ * Establishes the service for the user in the Main Driver in order to start the API.
+ * 
+ * @author Noah Cavazos
+ *
+ */
+public interface UserService {
+	/**
+	 * Creates a new user in the application and returns the newly 
+	 * created user. If a user with that username already exists, it 
+	 * will throw an exception.
+	 * 
+	 * @param user the new user to be created
+	 * @return the created user
+	 * @throws UsernameAlreadyExistsException
+	 */
+	public User registerUser(User user) throws UserNameAlreadyExistsException;
+	
+	/**
+	 * Creates a new account in the application and saves it to the database
+	 * @param acc the new account to be created
+	 * @return the created account
+	 * @throws AccountAlreadyExistsException 
+	 */
+	public Account registerAccount(Account acc) throws AccountAlreadyExistsException;
+	
+	/**
+	 * Retrieves a user with the specified username in the application, 
+	 * returning that user only if the specified password matches the password 
+	 * of the retrieved user.
+	 * 
+	 * @param username the username of the desired user
+	 * @param password the password of the desired user
+	 * @return the user matching the username if the password matches or null if there is 
+	 * no user with that username or the password does not match
+	 */
+	public User logIn(String username, String password);
+	
+	/**
+	 * Retrieves all of the current accounts in the bank.
+	 * 
+	 * @return a List of all the accounts
+	 */
+	public List<Account> viewAccounts();
+}
