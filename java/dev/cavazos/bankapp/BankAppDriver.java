@@ -75,6 +75,7 @@ public class BankAppDriver {
 					System.out.println("-----------------------------------------------------------");
 					double deposit = scanner.nextDouble();
 					user.depositFunds(deposit);
+					user.setBalance(deposit);
 					break;
 				case "3":
 					System.out.println("-----------------------------------------------------------");
